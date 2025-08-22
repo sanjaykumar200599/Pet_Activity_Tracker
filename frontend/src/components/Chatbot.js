@@ -1,3 +1,4 @@
+//chatbot.js
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, Send, X, Trash2 } from 'lucide-react';
 import { api } from '../services/api';

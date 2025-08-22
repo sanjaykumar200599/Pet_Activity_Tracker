@@ -1,5 +1,5 @@
 import React from 'react';
-
+//progressRing.js
 const ProgressRing = ({ value, max, label, unit, color }) => {
   const percentage = Math.min((value / max) * 100, 100);
   const strokeDasharray = 2 * Math.PI * 45;

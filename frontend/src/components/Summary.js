@@ -1,3 +1,4 @@
+//summary.js
 import React from 'react';
 import ProgressRing from './ProgressRing';
 
