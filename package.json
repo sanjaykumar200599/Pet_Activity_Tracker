@@ -1,0 +1,27 @@
+{
+  "name": "petactivitytracker",
+  "version": "1.0.0",
+  "description": "A responsive micro-app for logging pet activities, built with **React + Node/Express**.",
+  "main": "index.js",
+  "scripts": {
+  "dev": "concurrently \"npm run server\" \"npm run client\"",
+  "server": "cd backend && npm run dev",
+  "client": "cd frontend && npm start",
+  "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjaykumar200599/Pet_Activity_Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sanjaykumar200599/Pet_Activity_Tracker/issues"
+  },
+  "homepage": "https://github.com/sanjaykumar200599/Pet_Activity_Tracker#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
