@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
   "dev": "concurrently \"npm run server\" \"npm run client\"",
-  "server": "cd backend && npm run dev",
+  "server": "cd backend && node server.js",
   "client": "cd frontend && npm start",
   "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
 },
@@ -13,8 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/sanjaykumar200599/Pet_Activity_Tracker.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["pet-tracker", "fullstack", "react", "nodejs"],
+  "author": "Sanjay",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
