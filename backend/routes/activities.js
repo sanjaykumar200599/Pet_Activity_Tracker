@@ -2,7 +2,30 @@ const express = require('express');
 const router = express.Router();
 const { validateActivity } = require('../middleware/validation');
 
-// Get all activities
+// ✅ Get activities by pet name (placed BEFORE /:id and /)
+router.get('/pet/:petName', (req, res) => {
+  try {
+    const { petName } = req.params;
+    const petActivities = global.activities.filter(activity =>
+      activity.petName.toLowerCase() === petName.toLowerCase()
+    );
+
+    res.json({
+      success: true,
+      data: petActivities,
+      count: petActivities.length,
+      petName
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching pet activities',
+      error: error.message
+    });
+  }
+});
+
+// ✅ Get all activities (with filters: date, petName, activityType)
 router.get('/', (req, res) => {
   try {
     const { date, petName, activityType } = req.query;
@@ -10,19 +33,19 @@ router.get('/', (req, res) => {
 
     if (date) {
       const filterDate = new Date(date).toDateString();
-      filteredActivities = filteredActivities.filter(activity => 
+      filteredActivities = filteredActivities.filter(activity =>
         new Date(activity.dateTime).toDateString() === filterDate
       );
     }
 
     if (petName) {
-      filteredActivities = filteredActivities.filter(activity => 
+      filteredActivities = filteredActivities.filter(activity =>
         activity.petName.toLowerCase().includes(petName.toLowerCase())
       );
     }
 
     if (activityType) {
-      filteredActivities = filteredActivities.filter(activity => 
+      filteredActivities = filteredActivities.filter(activity =>
         activity.activityType === activityType
       );
     }
@@ -41,7 +64,7 @@ router.get('/', (req, res) => {
   }
 });
 
-// Add new activity
+// ✅ Add new activity
 router.post('/', validateActivity, (req, res) => {
   try {
     const { petName, activityType, duration, dateTime } = req.body;
@@ -71,7 +94,7 @@ router.post('/', validateActivity, (req, res) => {
   }
 });
 
-// Delete activity
+// ✅ Delete activity by ID
 router.delete('/:id', (req, res) => {
   try {
     const { id } = req.params;
@@ -95,29 +118,6 @@ router.delete('/:id', (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Error deleting activity',
-      error: error.message
-    });
-  }
-});
-
-// Get activities by pet name
-router.get('/pet/:petName', (req, res) => {
-  try {
-    const { petName } = req.params;
-    const petActivities = global.activities.filter(activity => 
-      activity.petName.toLowerCase() === petName.toLowerCase()
-    );
-
-    res.json({
-      success: true,
-      data: petActivities,
-      count: petActivities.length,
-      petName
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching pet activities',
       error: error.message
     });
   }

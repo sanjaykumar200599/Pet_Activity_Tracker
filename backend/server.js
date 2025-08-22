@@ -50,7 +50,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error('Error:', err.stack);
+  console.error(`[ERROR] ${err.message}`);
   res.status(500).json({
     success: false,
     message: 'Something went wrong!',
@@ -59,7 +59,7 @@ app.use((err, req, res, next) => {
 });
 
 // 404 handler
-app.use('*', (req, res) => {
+app.use((req, res) => {
   res.status(404).json({
     success: false,
     message: 'Endpoint not found'
